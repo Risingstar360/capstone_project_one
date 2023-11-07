@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Leagues{% endblock %}
+
+{% block content %}
+<select id="countryDropdown" placeholder="Select Country" onchange="fetchleagues()">
+  <option value="" disabled selected>Select Country</option>
+</select>
+
+<select id="leagueDropdown">
+  <option value="" disabled selected>Select League</option>
+</select>
+
+<div id="tableContainer"></div>
+
+  
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='leagues.js') }}" defer></script>
+{% endblock %}
+
+

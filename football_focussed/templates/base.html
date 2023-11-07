@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/app.css">
+<title>Foot-e</title>
+</head>
+<body>
+ 
+<nav>
+  <a href="/leagues">Leagues</a> 
+  <a href="/teams">Teams - Coming Soon</a> 
+  <a href="/"><img src="/static/images/football.png" alt="Football Platform Logo" style="width:150px;"></a>
+  <a href="/player_search">Players</a> 
+  <a href="/myteam">MyTeam</a> 
+  
+  {% if current_user.is_authenticated %}
+    <a> {{ current_user_name }}</a>
+    <a href="{{ url_for('logout')}}">Logout</a>
+  {% else %}
+    <a href="{{ url_for('login')}}">Login</a>
+    <a href="{{ url_for('register')}}">Register</a>
+  {% endif %}
+
+</nav>
+
+{%block content%}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {%for category, message in messages %}
+      <div class="alert alert - {{category}}">
+        {{message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div>
+  <section>
+    <h2>About Foot-e</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, distinctio. Perferendis molestias iure hic nulla, maxime voluptatem illum tenetur quam. Officiis quae harum culpa asperiores hic ipsa laudantium commodi eum.
+    </p>
+  </section>
+
+  <section>
+    <h2>App Screenshots</h2>
+    <div>
+        Screenshots placeholder
+      <!-- Add screenshot images here. Example: -->
+      <!-- <img src="/path/to/screenshot1.png" alt="Screenshot 1"> -->
+      <!-- <img src="/path/to/screenshot2.png" alt="Screenshot 2"> -->
+    </div>
+  </section>
+</div>
+
+{%endblock%}
+
+<footer>
+  <p>
+    <a href="/contact">Contact Me</a> |
+    <a href="/terms">Terms</a> |
+    <a href="/about">About</a>
+  </p>
+  <p>
+    Follow us:
+    <a href="https://twitter.com/lifepathofM">
+      <img src="/static/images/twitter.png" alt="Twitter Logo" style="width:25px;">
+    </a>
+    <a href="https://www.linkedin.com/in/martinnorris200/">
+      <img src="/static/images/linkedin.png" alt="LinkedIn Logo" style="width:25px;">
+    </a>
+  </p>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+footer {
+    background-color: black ;
+    
+}
+
+.player-stats-container {
+    max-height: 300px; /* Adjuster*/
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+.player-stats, .player-details, .basic-details {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.player-stats th, .player-stats td, .basic-details {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.player-details, .player-stats-container {
+    visibility: hidden;
+}
+
+#line {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.playerDropdown {
+    width: 120px;
+}
+
+#savePositionsBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#savePositionsBtn:hover {
+    background-color: #0056b3;
+}

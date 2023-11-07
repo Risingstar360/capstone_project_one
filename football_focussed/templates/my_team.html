@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 id="teamName" data-team-id="{{ user_team.id if user_team else ''}}"></h1>
+    <h2>Formation: <span id="teamFormation"></span></h2>
+
+    <!-- Display Formation and Player Assignment Dropdowns -->
+    <div id="formationDisplay">
+    <!-- Will be populated dynamically based on formation -->
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Player Name</th>
+                <th>Position</th>
+                <th>Current Team</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="playerList">
+            <!-- Players dynamically added here -->
+        </tbody>
+    </table>
+
+    <form id="teamInfoForm" action="/update_team_info" method="post">
+        <label for="teamName">Team Name:</label>
+        <input type="text" id="teamName" name="team_name" value="{{user_team.team_name if user_team else ''}}" required>
+        
+        <label for="formation">Formation:</label>
+        <select id="formation" name="formation">
+            <option value="4-4-2" {% if user_team and user_team.formation == '4-4-2' %}selected{% endif %}>4-4-2</option>
+            <option value="4-3-3" {% if user_team and user_team.formation == '4-3-3' %}selected{% endif %}>4-3-3</option>
+            <option value="4-3-4" {% if user_team and user_team.formation == '4-3-4' %}selected{% endif %}>4-3-4</option>
+            <option value="4-2-3-1" {% if user_team and user_team.formation == '4-2-3-1' %}selected{% endif %}>4-2-3-1</option>
+            <option value="5-4-1" {% if user_team and user_team.formation == '5-4-1' %}selected{% endif %}>5-4-1</option>
+            <option value="3-5-2" {% if user_team and user_team.formation == '3-5-2' %}selected{% endif %}>3-5-2</option>
+            <!-- Plan to add additional formations here -->
+        </select>
+
+        <div></div>
+        <button id="savePositionsBtn">Save Positions</button>
+        <input type="submit" value="Update Team Info">
+    </form>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='team.js') }}" defer></script>
+{% endblock %}

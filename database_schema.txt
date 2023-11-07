@@ -1,68 +1,27 @@
 
-Table League {
-  id INTEGER [pk]
-  name VARCHAR
-  country_name VARCHAR
-  logo VARCHAR
+Table users {
+  id Integer [pk, increment]
+  username String(120) [unique, not null]
+  email String(120) [unique, not null]
+  password_hash String(128)
 }
 
-Table Team {
-  id INTEGER [pk]
-  name VARCHAR
-  country VARCHAR
-  league_id INTEGER [ref: > League.id]
-  address VARCHAR
-  city VARCHAR
-  stadium_name VARCHAR
-  stadium_capacity INTEGER
-  year_founded INTEGER
-  nickname VARCHAR
+Table user_teams {
+  id Integer [pk, increment]
+  user_id Integer [not null]
+  team_name String(120) [not null]
+  formation String(120) [not null]
+  owner_id Integer
 }
 
-Table Player {
-  id INTEGER [pk]
-  name VARCHAR
-  image VARCHAR
-  nationality VARCHAR
-  team_id INTEGER [ref: > Team.id]
-  age INTEGER
-  height FLOAT
-  weight FLOAT
-  injured BOOLEAN
-  position VARCHAR
-  appearances INTEGER
-  rating FLOAT
-  goals_scored INTEGER
-  goals_conceded INTEGER
-  goal_assists INTEGER
-  saves INTEGER
-  total_passes INTEGER
-  total_key_passes INTEGER
-  pass_accuracy FLOAT
-  total_tackle INTEGER
-  total_blocks INTEGER
-  total_interceptions INTEGER
-  duels_won INTEGER
-  dribble_attempts INTEGER
-  dribble_success INTEGER
-  dribble_past INTEGER
+Table players_in_teams {
+  id Integer [pk, increment]
+  team_id Integer [not null]
+  player_name String(120) [not null]
+  player_position String(60) [not null]
+  player_team String(120) [not null]
 }
 
-Table User {
-  id INTEGER [pk]
-  username VARCHAR [unique]
-  email VARCHAR [unique]
-  _password VARCHAR
-}
-
-Table UsersClub {
-  id INTEGER [pk]
-  name VARCHAR
-  formation VARCHAR
-  user_id INTEGER [ref: > User.id]
-}
-
-Table UsersClub_Player {
-  usersclub_id INTEGER [pk, ref: > UsersClub.id]
-  player_id INTEGER [pk, ref: > Player.id]
-}
+// Foreign Keys
+Ref: user_teams.user_id > users.id
+Ref: players_in_teams.team_id > user_teams.id

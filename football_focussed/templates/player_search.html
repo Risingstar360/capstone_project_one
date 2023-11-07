@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<h1>Player Search</h1>
+
+<input type="text" id="playerSearchInput" placeholder="Search by Surname" />
+    <button onclick="searchPlayers()">Search</button>
+    <div id="playersListContainer"></div>
+    <div id="playerStatisticsContainer"></div>
+
+<br>
+
+<div id="userData" data-user-id="{{ user.id if user.is_authenticated else '' }}" style="display:none;"></div>
+
+<button id="addToMyTeamBtn" style="display: none;">Add to MyTeam</button>
+
+<div class="player-details">
+    <table class="basic-details">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Position</th>
+                <th>Current Team</th>
+                <th>Birth Place</th>
+                <th>Height</th>
+                <th>Weight</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Players topline bio as above will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<div class="player-stats-container">
+    <table class="player-stats">
+        <thead>
+            <tr>
+                <th>Season</th>
+                <th>Club</th>
+                <th>Competition</th>
+                <th>App</th>
+                <th>Goals</th>
+                <th>Assists</th>
+                <th>OG's</th>
+                <th>Shots</th>
+                <th>Passes</th>
+                <th>Key Passes</th>
+                <th>Yellow</th>
+                <th>Yellow/Red</th>
+                <th>Red</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+                <!-- Playere detailed statistics will be populated here dynamically -->
+        </tbody>
+    </table>
+</div>
+    
+
+{%endblock%}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='players.js') }}" defer></script>
+{% endblock %}
